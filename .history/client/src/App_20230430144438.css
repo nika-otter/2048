@@ -1,0 +1,10 @@
+.App {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgb(188, 121, 39);
+}
+/* main {
+  flex: 1 0 auto;
+} */

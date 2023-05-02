@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(131, 168, 180);
+  //   width: 100vw;
+  //   height: 65px;
+}
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 20px 0;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  &:hover {
+    color: rgb(106, 134, 144);
+    background-color: rgb(255, 255, 255);
+  }
+}

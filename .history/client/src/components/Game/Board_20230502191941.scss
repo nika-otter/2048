@@ -1,0 +1,216 @@
+.board {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 440px;
+  height: 440px;
+  background-color: rgb(131, 168, 180);
+  border-radius: 3px;
+  position: relative;
+}
+
+.details-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.resetButton {
+  background-color: rgb(131, 168, 180);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 25px;
+  padding: 5px;
+  border-radius: 3px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  &:hover {
+    background-color: rgb(131, 168, 180);
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+.score-header {
+  font-size: 1rem;
+}
+
+.score-box {
+  background-color: rgb(131, 168, 180) 6;
+  color: rgb(0, 0, 0);
+  border-radius: 3px;
+}
+
+.cell,
+.tile {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  display: inline-block;
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 3px;
+
+  background-color: rgb(224, 236, 240);
+}
+
+.tile {
+  color: rgb(86, 86, 86);
+  background-color: aquamarine;
+}
+
+.tile0 {
+  background-color: rgb(238, 247, 249);
+}
+
+.tile2 {
+  background-color: rgb(224, 240, 245);
+}
+
+.tile4 {
+  background-color: rgb(199, 221, 228);
+}
+
+.tile8 {
+  background-color: rgb(187, 212, 220);
+}
+
+.tile16 {
+  background-color: rgb(171, 195, 203);
+}
+
+.tile32 {
+  background-color: rgb(140, 165, 174);
+}
+
+.tile64 {
+  background-color: rgb(116, 144, 153);
+
+  color: aliceblue;
+}
+
+.tile128 {
+  background-color: rgb(98, 125, 134);
+  color: aliceblue;
+}
+
+.tile256 {
+  background-color: rgb(71, 91, 98);
+  color: aliceblue;
+}
+
+.tile512 {
+  background-color: rgb(45, 68, 75);
+
+  color: aliceblue;
+}
+
+.tile1024 {
+  background-color: rgb(40, 68, 78);
+  color: aliceblue;
+}
+
+.tile2048 {
+  position: absolute;
+  background-size: contain;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0px;
+  background-color: rgb(110, 160, 177);
+  color: aliceblue;
+}
+
+.tile {
+  position: absolute;
+}
+
+.tile.merged {
+  display: none;
+}
+
+.tile.new {
+  animation-duration: 0.3s;
+  animation-name: newTile;
+  animation-fill-mode: forwards;
+
+  transform: scale(0);
+}
+
+@keyframes newTile {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.overlay .message {
+  color: #666;
+}
+
+@for $row from 0 through 3 {
+  @for $column from 0 through 3 {
+    .position_#{$row}_#{$column}:not(.isMoving) {
+      top: 110px * $row;
+      left: 110px * $column;
+    }
+  }
+}
+
+@for $fromRow from 0 through 3 {
+  @for $toRow from 0 through 3 {
+    $name: row_from_#{$fromRow}_to_#{$toRow};
+
+    @if $fromRow == $toRow {
+      .#{$name} {
+        top: 110px * $toRow;
+      }
+    } @else {
+      .#{$name} {
+        animation-duration: 0.2s;
+        animation-name: $name;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes #{$name} {
+        from {
+          top: 110px * $fromRow;
+        }
+        to {
+          top: 110px * $toRow;
+        }
+      }
+    }
+  }
+}
+
+@for $fromColumn from 0 through 3 {
+  @for $toColumn from 0 through 3 {
+    $name: column_from_#{$fromColumn}_to_#{$toColumn};
+
+    @if $fromColumn == $toColumn {
+      .#{$name} {
+        left: 110px * $toColumn;
+      }
+    } @else {
+      .#{$name} {
+        animation-duration: 0.2s;
+        animation-name: $name;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes #{$name} {
+        from {
+          left: 110px * $fromColumn;
+        }
+        to {
+          left: 110px * $toColumn;
+        }
+      }
+    }
+  }
+}
